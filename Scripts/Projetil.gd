@@ -11,18 +11,21 @@ func _process(delta):
 	#timer.timeout.connect(ativar.bind(false, Vector2.ZERO))
 
 func ativar(a : bool, pos : Vector2):
-	colisao.disabled = !a
+	colisao.set_deferred("disable", !a)
 	set_process(a)
 	super.ativar(a, pos)
+	timer.stop()
 	if a:
 		esperar()
 	elif pool:
 		pool.voltarAosDisponiveis(self as ObjetoDaPool)
 
 func esperar():
+	timer.stop()
 	timer.start()
 	await timer.timeout
-	ativar(false, Vector2.ZERO)
+	if isActive:
+		ativar(false, Vector2(100,100))
 	#Por didática, fizemos desse jeito
 	#Mas também podemos fazer essa parte com:
 	#func _ready():

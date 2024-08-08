@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var projetil_pool = $"../ProjetilPool"
 @onready var posicao_projetil = $PosicaoProjetil
 
-const SPEED = 200.0
+const SPEED = 150.0
 
 func _physics_process(delta):
 	var direction = Input.get_vector("Esquerda","Direita","Cima","Baixo")

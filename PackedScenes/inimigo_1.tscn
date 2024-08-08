@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://bewjw42vh2kbe"]
+
+[ext_resource type="Script" path="res://Scripts/Inimigo1.gd" id="1_chhx3"]
+[ext_resource type="Texture2D" uid="uid://bxq6y6cxbjd6k" path="res://Sprites/enemy-small.png" id="2_7ows3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0srah"]
+atlas = ExtResource("2_7ows3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mswkj"]
+atlas = ExtResource("2_7ows3")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_huaxk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0srah")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mswkj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w8y5m"]
+size = Vector2(16, 16)
+
+[node name="Inimigo1" type="Node2D"]
+position = Vector2(-142, -101)
+script = ExtResource("1_chhx3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_huaxk")
+autoplay = "default"
+frame_progress = 0.250694
+
+[node name="Colisor" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Colisor"]
+shape = SubResource("RectangleShape2D_w8y5m")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+
+[connection signal="area_entered" from="Colisor" to="." method="_on_colisor_area_entered"]

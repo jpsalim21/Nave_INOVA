@@ -1,11 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://cqq4nbkpdenye"]
+[gd_scene load_steps=21 format=3 uid="uid://cqq4nbkpdenye"]
 
 [ext_resource type="Texture2D" uid="uid://xiqr3y7kobi7" path="res://Sprites/ship.png" id="1_hng7l"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_yx06q"]
-[ext_resource type="Script" path="res://ObjectPool.gd" id="3_knlv8"]
+[ext_resource type="Script" path="res://Scripts/ObjectPool.gd" id="3_knlv8"]
 [ext_resource type="PackedScene" uid="uid://cms1np2ov5b3y" path="res://PackedScenes/projetil.tscn" id="4_tenmy"]
-[ext_resource type="Script" path="res://Inimigo1.gd" id="5_5uwdq"]
-[ext_resource type="Texture2D" uid="uid://bxq6y6cxbjd6k" path="res://Sprites/enemy-small.png" id="5_rgipj"]
+[ext_resource type="PackedScene" uid="uid://bewjw42vh2kbe" path="res://PackedScenes/inimigo_1.tscn" id="5_41ow5"]
+[ext_resource type="Script" path="res://Scripts/SpawnEnemy.gd" id="6_p1yk1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_usbxo"]
 atlas = ExtResource("1_hng7l")
@@ -122,37 +122,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yt84i"]
 size = Vector2(12, 13)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0srah"]
-atlas = ExtResource("5_rgipj")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mswkj"]
-atlas = ExtResource("5_rgipj")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_huaxk"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0srah")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mswkj")
-}],
-"loop": true,
-"name": &"default",
-"speed": 12.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w8y5m"]
-size = Vector2(16, 16)
-
 [node name="Node2D" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+zoom = Vector2(4, 4)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(0, 62)
 script = ExtResource("1_yx06q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
@@ -174,19 +150,14 @@ script = ExtResource("3_knlv8")
 objeto = ExtResource("4_tenmy")
 tamanhoInicial = 6
 
-[node name="Inimigo1" type="Node2D" parent="."]
-position = Vector2(-142, -101)
-script = ExtResource("5_5uwdq")
+[node name="EnemyPool" type="Node" parent="."]
+script = ExtResource("3_knlv8")
+objeto = ExtResource("5_41ow5")
+tamanhoInicial = 10
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Inimigo1"]
-sprite_frames = SubResource("SpriteFrames_huaxk")
-autoplay = "default"
-frame_progress = 0.250694
+[node name="SpawnEnemy" type="Node" parent="."]
+script = ExtResource("6_p1yk1")
+tempoMin = 0.1
+tempoMax = 2.0
 
-[node name="Colisor" type="Area2D" parent="Inimigo1"]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Inimigo1/Colisor"]
-shape = SubResource("RectangleShape2D_w8y5m")
-
-[node name="Timer" type="Timer" parent="Inimigo1"]
-wait_time = 3.0
+[node name="Timer" type="Timer" parent="SpawnEnemy"]
