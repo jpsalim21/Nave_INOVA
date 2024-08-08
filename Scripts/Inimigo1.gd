@@ -10,7 +10,7 @@ func _process(delta):
 func ativar(a : bool, pos : Vector2):
 	set_process(a)
 	super.ativar(a, pos)
-	timer.stop()
+	timer.stop() #ALERT MEGA IMPORTANTE. Caso não exista, podemos ter muitos problemas
 	if not a:
 		if pool: 
 			pool.voltarAosDisponiveis(self as ObjetoDaPool)
@@ -18,7 +18,6 @@ func ativar(a : bool, pos : Vector2):
 		esperar()
 
 func esperar():
-	timer.stop()
 	timer.start()
 	await timer.timeout
 	ativar(false, Vector2(200, 200))
@@ -30,9 +29,9 @@ func esperar():
 	#E só chamamos o timer.start no ativar, caso a seja positivo
 
 func _on_colisor_area_entered(area):
-	if not isActive: return 
+	if not isActive: return  #ALERT: Mega importante também. 
 	var projetil = area as Projetil
 	if projetil != null:
-		print("Sai pelo projetil")
-		ativar(false, Vector2.ZERO)
+		projetil.ativar(false, Vector2(200,200))
+		ativar(false, Vector2(200,200))
 	pass # Replace with function body.
