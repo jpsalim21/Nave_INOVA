@@ -175,7 +175,7 @@ objeto = ExtResource("4_tenmy")
 tamanhoInicial = 6
 
 [node name="Inimigo1" type="Node2D" parent="."]
-position = Vector2(-142, -101)
+position = Vector2(87, -80)
 script = ExtResource("5_5uwdq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Inimigo1"]
@@ -188,5 +188,4 @@ frame_progress = 0.250694
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Inimigo1/Colisor"]
 shape = SubResource("RectangleShape2D_w8y5m")
 
-[node name="Timer" type="Timer" parent="Inimigo1"]
-wait_time = 3.0
+[connection signal="hidden" from="Inimigo1" to="Inimigo1" method="_on_hidden"]
