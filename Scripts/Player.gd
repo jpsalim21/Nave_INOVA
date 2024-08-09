@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var projetil_pool = $"../ProjetilPool"
 @onready var posicao_projetil = $PosicaoProjetil
+@onready var audio : AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 const SPEED = 150.0
 
@@ -17,6 +18,7 @@ func _physics_process(delta):
 func _unhandled_input(event):
 	if event.is_action_pressed("Atirar"):
 		projetil_pool.instanciar(posicao_projetil.global_position)
+		audio.play()
 
 func animar(vX : float):
 	if vX:

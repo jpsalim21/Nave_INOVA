@@ -1,7 +1,29 @@
-[gd_scene load_steps=7 format=3 uid="uid://bewjw42vh2kbe"]
+[gd_scene load_steps=14 format=3 uid="uid://bewjw42vh2kbe"]
 
 [ext_resource type="Script" path="res://Scripts/Inimigo1.gd" id="1_chhx3"]
 [ext_resource type="Texture2D" uid="uid://bxq6y6cxbjd6k" path="res://Sprites/enemy-small.png" id="2_7ows3"]
+[ext_resource type="Texture2D" uid="uid://ukdbx0e18pi1" path="res://Sprites/explosion.png" id="2_31bsb"]
+[ext_resource type="AudioStream" uid="uid://dssapg5kve2fs" path="res://Sons/Retro Explosion Short 15.wav" id="4_ep5yy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsn4g"]
+atlas = ExtResource("2_31bsb")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xoa3"]
+atlas = ExtResource("2_31bsb")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lj0jp"]
+atlas = ExtResource("2_31bsb")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ew4n1"]
+atlas = ExtResource("2_31bsb")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i78y3"]
+atlas = ExtResource("2_31bsb")
+region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0srah"]
 atlas = ExtResource("2_7ows3")
@@ -13,6 +35,26 @@ region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_huaxk"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsn4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xoa3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lj0jp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ew4n1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i78y3")
+}],
+"loop": false,
+"name": &"Destruir",
+"speed": 12.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0srah")
@@ -29,13 +71,12 @@ animations = [{
 size = Vector2(16, 16)
 
 [node name="Inimigo1" type="Node2D"]
-position = Vector2(-142, -101)
 script = ExtResource("1_chhx3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_huaxk")
+animation = &"Destruir"
 autoplay = "default"
-frame_progress = 0.250694
 
 [node name="Colisor" type="Area2D" parent="."]
 collision_mask = 2
@@ -45,5 +86,8 @@ shape = SubResource("RectangleShape2D_w8y5m")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 4.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ep5yy")
 
 [connection signal="area_entered" from="Colisor" to="." method="_on_colisor_area_entered"]
