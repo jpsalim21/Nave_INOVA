@@ -5,6 +5,8 @@ extends CharacterBody2D
 @onready var posicao_projetil = $PosicaoProjetil
 @onready var audio : AudioStreamPlayer2D = $AudioStreamPlayer2D
 
+@export var vida : int = 3
+
 const SPEED = 150.0
 
 func _physics_process(delta):
@@ -28,3 +30,12 @@ func animar(vX : float):
 			sprite.play("Esquerda")
 	else:
 		sprite.play("default")
+
+
+func _on_area_2d_area_entered(area):
+	var ehDano = area as Dano
+	if ehDano:
+		vida -= 1
+		if vida <= 0:
+			print("Morreu")
+	pass # Replace with function body.

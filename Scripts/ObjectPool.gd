@@ -17,8 +17,8 @@ func _ready():
 
 func criarObj():
 	var objetoAdicionar = objeto.instantiate() as ObjetoDaPool
-	objetoAdicionar.global_position = Vector2(200, 200)
 	add_child(objetoAdicionar)
+	objetoAdicionar.global_position = Vector2(200,200)
 	disponiveis.append(objetoAdicionar)
 
 func instanciar(pos : Vector2):

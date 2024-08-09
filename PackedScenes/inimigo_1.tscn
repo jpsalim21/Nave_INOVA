@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://bewjw42vh2kbe"]
+[gd_scene load_steps=15 format=3 uid="uid://bewjw42vh2kbe"]
 
 [ext_resource type="Script" path="res://Scripts/Inimigo1.gd" id="1_chhx3"]
 [ext_resource type="Texture2D" uid="uid://bxq6y6cxbjd6k" path="res://Sprites/enemy-small.png" id="2_7ows3"]
 [ext_resource type="Texture2D" uid="uid://ukdbx0e18pi1" path="res://Sprites/explosion.png" id="2_31bsb"]
 [ext_resource type="AudioStream" uid="uid://dssapg5kve2fs" path="res://Sons/Retro Explosion Short 15.wav" id="4_ep5yy"]
+[ext_resource type="Script" path="res://PackedScenes/Dano.gd" id="5_bu855"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tsn4g"]
 atlas = ExtResource("2_31bsb")
@@ -89,5 +90,11 @@ wait_time = 4.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_ep5yy")
+
+[node name="Dano" type="Area2D" parent="."]
+script = ExtResource("5_bu855")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Dano"]
+shape = SubResource("RectangleShape2D_w8y5m")
 
 [connection signal="area_entered" from="Colisor" to="." method="_on_colisor_area_entered"]
