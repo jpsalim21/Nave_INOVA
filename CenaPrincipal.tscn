@@ -134,8 +134,8 @@ size = Vector2(12, 13)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_77fuh"]
 shader = ExtResource("7_31ak3")
-shader_parameter/direction = Vector2(0, 1)
-shader_parameter/speed_scale = 0.02
+shader_parameter/direcao = Vector2(0, 1)
+shader_parameter/velocidade = 0.02
 
 [node name="Node2D" type="Node2D"]
 
