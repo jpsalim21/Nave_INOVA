@@ -18,5 +18,5 @@ func spawnEnemy():
 	var posX = randi_range(-130, 130)
 	var obj : Node2D = inimigos.pick_random().instantiate()
 	obj.global_position = Vector2(posX, -92)
-	get_tree().root.add_child(obj)
+	add_child(obj)
 	timer.start(randf_range(tempoMin, tempoMax))

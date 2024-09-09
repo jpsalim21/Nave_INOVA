@@ -40,4 +40,11 @@ func _on_area_2d_area_entered(area):
 	if ehDano:
 		vida -= 1
 		if vida <= 0:
-			print("Morreu")
+			get_tree().reload_current_scene()
+			return
+		flashSprite()
+
+func flashSprite():
+	sprite.modulate = Color.RED
+	await get_tree().create_timer(0.2).timeout
+	sprite.modulate = Color.WHITE

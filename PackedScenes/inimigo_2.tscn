@@ -5,6 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://ukdbx0e18pi1" path="res://Sprites/explosion.png" id="3_58lyt"]
 [ext_resource type="Texture2D" uid="uid://dd0p8qgamddcs" path="res://Sprites/enemy-medium.png" id="4_d4ov7"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1owae"]
+size = Vector2(32, 15)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_tsn4g"]
 atlas = ExtResource("3_58lyt")
 region = Rect2(0, 0, 16, 16)
@@ -51,7 +54,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_i78y3")
 }],
-"loop": true,
+"loop": false,
 "name": &"Destruir",
 "speed": 5.0
 }, {
@@ -64,20 +67,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 10.0
 }]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1owae"]
-size = Vector2(32, 15)
 
 [node name="Inimigo1" instance=ExtResource("1_rkbbr")]
 script = ExtResource("2_8bshf")
 amplitudeMovimento = 5.0
 frequenciaMovimento = 10.0
-
-[node name="AnimatedSprite2D" parent="." index="0"]
-sprite_frames = SubResource("SpriteFrames_tq480")
-animation = &"default"
+vida = 2
 
 [node name="CollisionShape2D2" parent="Colisor" index="0"]
 position = Vector2(0, 0.5)
@@ -85,3 +82,8 @@ position = Vector2(0, 0.5)
 [node name="CollisionShape2D3" parent="Dano" index="0"]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_1owae")
+
+[node name="AnimatedSprite2D" parent="." index="4"]
+sprite_frames = SubResource("SpriteFrames_tq480")
+frame = 4
+frame_progress = 1.0

@@ -2,9 +2,10 @@ class_name Inimigo2
 extends Node2D
 
 @onready var timer : Timer = $Timer
-@onready var col : CollisionShape2D = $Colisor/CollisionShape2D2
 @onready var sprite = $AnimatedSprite2D
 @onready var audio : AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var colisor: Area2D = $Colisor
+@onready var dano: Dano = $Dano
 
 var speed = 50
 
@@ -15,10 +16,11 @@ func _process(delta):
 	global_position.y += speed * delta
 
 func destruir():
+	colisor.queue_free()
+	dano.queue_free()
 	timer.stop()
 	set_process(false)
 	audio.play()
-	col.set_deferred("disabled", true)
 	sprite.play("Destruir")
 	await sprite.animation_finished
 	queue_free()
