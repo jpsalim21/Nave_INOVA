@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
-@onready var projetil_pool = $"../ProjetilPool"
 @onready var posicao_projetil = $PosicaoProjetil
 @onready var audio : AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 @export var vida : int = 3
+
+var projetil : PackedScene = preload("res://PackedScenes/projetil.tscn")
 
 const SPEED = 150.0
 
@@ -19,7 +20,9 @@ func _physics_process(delta):
 
 func _unhandled_input(event):
 	if event.is_action_pressed("Atirar"):
-		projetil_pool.instanciar(posicao_projetil.global_position)
+		var objProjetil : Node2D = projetil.instantiate()
+		objProjetil.global_position = posicao_projetil.global_position
+		get_tree().root.add_child(objProjetil)
 		audio.play()
 
 func animar(vX : float):
@@ -38,4 +41,3 @@ func _on_area_2d_area_entered(area):
 		vida -= 1
 		if vida <= 0:
 			print("Morreu")
-	pass # Replace with function body.

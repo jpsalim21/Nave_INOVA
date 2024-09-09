@@ -1,4 +1,4 @@
-class_name Inimigo2
+class_name Inimigo1
 extends Node2D
 
 @onready var timer : Timer = $Timer
@@ -6,12 +6,20 @@ extends Node2D
 @onready var sprite = $AnimatedSprite2D
 @onready var audio : AudioStreamPlayer2D = $AudioStreamPlayer2D
 
+@export var amplitudeMovimento : float
+@export var frequenciaMovimento : float
+var posX : float
+
 var speed = 50
 
 func _ready() -> void:
 	timer.timeout.connect(queue_free)
 
+func _enter_tree() -> void:
+	posX = global_position.x
+
 func _process(delta):
+	global_position.x = posX + (sin(timer.time_left * frequenciaMovimento) * amplitudeMovimento) 
 	global_position.y += speed * delta
 
 func destruir():

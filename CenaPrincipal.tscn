@@ -2,9 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://xiqr3y7kobi7" path="res://Sprites/ship.png" id="1_hng7l"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_yx06q"]
-[ext_resource type="Script" path="res://Scripts/ObjectPool.gd" id="3_knlv8"]
 [ext_resource type="AudioStream" uid="uid://7ngxldb5le2k" path="res://Sons/Retro Gun Laser SingleShot 01.wav" id="3_sd8ww"]
-[ext_resource type="PackedScene" uid="uid://cms1np2ov5b3y" path="res://PackedScenes/projetil.tscn" id="4_tenmy"]
 [ext_resource type="PackedScene" uid="uid://bewjw42vh2kbe" path="res://PackedScenes/inimigo_1.tscn" id="5_41ow5"]
 [ext_resource type="Script" path="res://Scripts/SpawnEnemy.gd" id="6_p1yk1"]
 [ext_resource type="Shader" path="res://Shader/Fundo.gdshader" id="7_31ak3"]
@@ -16,6 +14,26 @@ size = Vector2(330, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxpbp"]
 size = Vector2(21, 162)
+
+[sub_resource type="Shader" id="Shader_yiomp"]
+code = "shader_type canvas_item;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j8mp8"]
+shader = SubResource("Shader_yiomp")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_usbxo"]
 atlas = ExtResource("1_hng7l")
@@ -134,7 +152,7 @@ size = Vector2(12, 13)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_77fuh"]
 shader = ExtResource("7_31ak3")
-shader_parameter/direcao = Vector2(0, 1)
+shader_parameter/direcao = Vector2(0, -1)
 shader_parameter/velocidade = 0.02
 
 [node name="Node2D" type="Node2D"]
@@ -165,6 +183,7 @@ position = Vector2(0, 62)
 script = ExtResource("1_yx06q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+material = SubResource("ShaderMaterial_j8mp8")
 sprite_frames = SubResource("SpriteFrames_3qvik")
 animation = &"ViraEsquerda"
 autoplay = "default"
@@ -187,20 +206,10 @@ stream = ExtResource("3_sd8ww")
 position = Vector2(0, -3.5)
 shape = SubResource("RectangleShape2D_yt84i")
 
-[node name="ProjetilPool" type="Node" parent="."]
-script = ExtResource("3_knlv8")
-objeto = ExtResource("4_tenmy")
-tamanhoInicial = 6
-
-[node name="EnemyPool" type="Node" parent="."]
-script = ExtResource("3_knlv8")
-objeto = ExtResource("5_41ow5")
-tamanhoInicial = 10
-
 [node name="SpawnEnemy" type="Node" parent="."]
 script = ExtResource("6_p1yk1")
-tempoMin = 0.1
-tempoMax = 2.0
+tempoMin = 0.5
+tempoMax = 1.0
 
 [node name="Timer" type="Timer" parent="SpawnEnemy"]
 
@@ -221,5 +230,7 @@ position = Vector2(0, 62)
 stream = ExtResource("9_sqfae")
 volume_db = -30.0
 autoplay = true
+
+[node name="Inimigo2" parent="." instance=ExtResource("5_41ow5")]
 
 [connection signal="area_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_area_entered"]
