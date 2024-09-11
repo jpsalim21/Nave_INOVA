@@ -56,7 +56,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Destruir",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -72,8 +72,9 @@ animations = [{
 
 [node name="Inimigo1" instance=ExtResource("1_rkbbr")]
 script = ExtResource("2_8bshf")
-amplitudeMovimento = 5.0
-frequenciaMovimento = 10.0
+pontuacao = 100
+amplitudeMovimento = 20.0
+frequenciaMovimento = 5.0
 vida = 2
 
 [node name="CollisionShape2D2" parent="Colisor" index="0"]

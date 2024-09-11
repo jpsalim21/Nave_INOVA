@@ -6,10 +6,10 @@ extends Node2D
 @onready var audio : AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var dano: Dano = $Dano
 @onready var colisor: Area2D = $Colisor
+@export var pontuacao : int = 100
 
 @export var amplitudeMovimento : float
 @export var frequenciaMovimento : float
-
 @export var vida : int = 2
 
 var posX : float
@@ -33,6 +33,7 @@ func destruir():
 	set_process(false)
 	audio.play()
 	sprite.play("Destruir")
+	GameController.aumentarPontuacao(pontuacao)
 	await sprite.animation_finished
 	queue_free()
 
