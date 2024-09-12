@@ -2,7 +2,6 @@ extends HBoxContainer
 
 var coracoes : Array[Control] = []
 
-
 func _ready() -> void:
 	var filhos = get_children()
 	for obj in filhos:
