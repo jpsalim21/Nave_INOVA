@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cqq4nbkpdenye"]
+[gd_scene load_steps=30 format=3 uid="uid://cxw2luo1obgse"]
 
 [ext_resource type="Texture2D" uid="uid://xiqr3y7kobi7" path="res://Sprites/ship.png" id="1_hng7l"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_yx06q"]

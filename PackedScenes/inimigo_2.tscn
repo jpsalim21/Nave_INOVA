@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c6yfjni226ovk"]
+[gd_scene load_steps=14 format=3 uid="uid://b7sdgq4qx08ny"]
 
 [ext_resource type="PackedScene" uid="uid://bewjw42vh2kbe" path="res://PackedScenes/inimigo_1.tscn" id="1_rkbbr"]
 [ext_resource type="Script" path="res://Scripts/inimigo_2.gd" id="2_8bshf"]

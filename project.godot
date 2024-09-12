@@ -21,11 +21,16 @@ GameController="*res://Scripts/GameController.gd"
 
 [display]
 
-window/stretch/mode="viewport"
+window/size/mode=2
+window/stretch/mode="canvas_items"
 
 [dotnet]
 
 project/assembly_name="ShooterMinicurso_INOVA"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/script-tabs/plugin.cfg")
 
 [input]
 

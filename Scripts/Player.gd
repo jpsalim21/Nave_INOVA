@@ -17,7 +17,7 @@ func _physics_process(delta):
 	direction.y *= 0.6
 	velocity = direction * SPEED
 	
-	if Input.is_action_pressed("Atirar") and timer.time_left <= 0.1:
+	if Input.is_action_pressed("Atirar") and timer.time_left <= 0.05:
 		atirar()
 	
 	animar(velocity.x)
@@ -48,5 +48,7 @@ func atirar():
 	var objProjetil : Node2D = projetil.instantiate()
 	objProjetil.global_position = posicao_projetil.global_position
 	get_tree().root.add_child(objProjetil)
+	
 	audio.play()
+	
 	timer.start()
